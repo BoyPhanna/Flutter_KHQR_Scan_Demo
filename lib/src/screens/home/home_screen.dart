@@ -1,3 +1,5 @@
+// ignore_for_file: empty_catches, depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,7 +56,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           MaterialButton(
                             onPressed: () {
-                              print("លុយបង់ថ្លៃស្រា");
                               getScan();
                             },
                             child: const MenuFetur(
@@ -85,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      backgroundColor: Color.fromARGB(255, 75, 119, 230),
+      backgroundColor: const Color.fromARGB(255, 75, 119, 230),
       bottomNavigationBar: bottonNavigationBarCustom(),
     );
   }
@@ -162,21 +163,16 @@ class _HomeScreenState extends State<HomeScreen> {
         String bank = bankName.replaceAll(RegExp(r"\d"), "");
         StringScanner scanner = StringScanner(bank);
         if (scanner.scan("ABA Bank")) {
-          print("\n Bank : ABA Bank");
           bank = "ABA Bank";
         } else if (scanner.scan("Phnom Penh Commercial Bank")) {
-          print("\n Bank : PPC Bank");
           bank = "PPC Bank";
-        } else {
-          print("\n Bank : " + bank);
-        }
+        } else {}
 
         context
             .read<HomeBloc>()
             .add(HomeAccountName(bankName: bank, name: textWithoutNumbers));
         Navigator.pushNamed(context, AppRoute.caseOut);
       } else if (qrCode == "") {
-        print("\nTxt : " + txt.length.toString());
         QuickAlert.show(
           context: context,
           type: QuickAlertType.error,

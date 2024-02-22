@@ -161,7 +161,6 @@ class _HomeScreenState extends State<HomeScreen> {
             );
         String bank = bankName.replaceAll(RegExp(r"\d"), "");
         StringScanner scanner = StringScanner(bank);
-        StringScanner scanner2 = StringScanner(qrCode);
         if (scanner.scan("ABA Bank")) {
           print("\n Bank : ABA Bank");
           bank = "ABA Bank";
